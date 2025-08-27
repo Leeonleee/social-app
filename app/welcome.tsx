@@ -2,11 +2,13 @@ import Button from '@/components/Button';
 import ScreenWrapper from '@/components/ScreenWrapper';
 import { theme } from '@/constants/theme';
 import { hp, wp } from '@/helpers/common';
+import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 export default function welcome() {
+    const router = useRouter();
 
     return (
         <ScreenWrapper bg="white">
@@ -28,8 +30,18 @@ export default function welcome() {
                     <Button
                         title='Getting Started'
                         buttonStyle={{marginHorizontal: wp(3)}}
-                        onPress={() => {}}
+                        onPress={() => router.push('/signup')}
                     />
+                    <View style={styles.bottomTextContainer}>
+                        <Text style={styles.loginText}>
+                            Already have an account?
+                        </Text>
+                        <Pressable onPress={() => router.push('/login')}>
+                            <Text style={[styles.loginText, {color: theme.colors.primaryDark, fontWeight: theme.fonts.semibold}]}>
+                                Login
+                            </Text>
+                        </Pressable>
+                    </View>
                 </View>
             </View>
         </ScreenWrapper>
@@ -64,5 +76,16 @@ const styles = StyleSheet.create({
     footer: {
         gap: 30,
         width: '100%'
+    },
+    bottomTextContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 5
+    },
+    loginText: {
+        textAlign: 'center',
+        color: theme.colors.text,
+        fontSize: hp(1.6)
     }
 })

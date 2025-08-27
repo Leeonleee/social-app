@@ -6,7 +6,7 @@ import Loading from './Loading';
 
 type ButtonProps = {
     buttonStyle: ViewStyle;
-    textStyle: TextStyle;
+    textStyle?: TextStyle;
     title: string;
     onPress?: () => void;
     loading?: boolean;
