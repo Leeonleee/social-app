@@ -1,10 +1,11 @@
+import BackButton from '@/components/BackButton'
+import ScreenWrapper from '@/components/ScreenWrapper'
 import React from 'react'
-import { Text, View } from 'react-native'
 
 export default function login() {
   return (
-    <View>
-      <Text>login</Text>
-    </View>
+    <ScreenWrapper>
+      <BackButton />
+    </ScreenWrapper>
   )
 }
