@@ -1,9 +1,9 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useCallback, useContext, useState } from "react";
 
 // Define the User interface
 interface User {
     id: string;
-    email: string;
+    email?: string;
     username?: string;
     name?: string;
     [key: string]: any; // Allow additional properties
@@ -12,7 +12,7 @@ interface User {
 // Define the context type
 interface AuthContextType {
     user: User | null;
-    setAuth: (authUser: User) => void;
+    setAuth: (authUser: User | null) => void;
     setUserData: (userData: User) => void;
 }
 
@@ -25,15 +25,15 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [user, setUser] = useState<User | null>(null);
-
-    const setAuth = (authUser: User) => {
+    
+    const setAuth = useCallback((authUser: User | null) => {
         setUser(authUser);
-    }
-
-    const setUserData = (userData: User) => {
+    }, []);
+    
+    const setUserData = useCallback((userData: User) => {
         setUser({...userData});
-    }
-
+    }, []);
+    
     return (
         <AuthContext.Provider value={{user, setAuth, setUserData}}>
             {children}
