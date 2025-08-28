@@ -5,7 +5,7 @@ import { Pressable, StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-n
 import Loading from './Loading';
 
 type ButtonProps = {
-    buttonStyle: ViewStyle;
+    buttonStyle?: ViewStyle;
     textStyle?: TextStyle;
     title: string;
     onPress?: () => void;

@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-export default function welcome() {
+export default function Welcome() {
     const router = useRouter();
 
     return (

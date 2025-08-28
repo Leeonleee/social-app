@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { Button, Text } from "react-native";
 
-const index = () => {
+const Index = () => {
     const router = useRouter();
     return (
         <ScreenWrapper>
@@ -13,4 +13,4 @@ const index = () => {
     )
 };
 
-export default index;
+export default Index;
