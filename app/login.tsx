@@ -5,6 +5,7 @@ import Input from '@/components/Input'
 import ScreenWrapper from '@/components/ScreenWrapper'
 import { theme } from '@/constants/theme'
 import { hp, wp } from '@/helpers/common'
+import { supabase } from '@/lib/supabase'
 import { useRouter } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import React, { useRef, useState } from 'react'
@@ -16,10 +17,26 @@ export default function Login() {
     const passwordRef = useRef("")
     const [loading, setLoading] = useState(false);
 
-    const onSubmit = () => {
+    const onSubmit = async() => {
         if(!emailRef.current || !passwordRef.current) {
             Alert.alert('Login', 'please fill all the fields!');
             return;
+        }
+        
+        let email = emailRef.current.trim();
+        let password = passwordRef.current.trim();
+
+        setLoading(true);
+        const {error} = await supabase.auth.signInWithPassword({
+            email,
+            password
+        });
+
+        setLoading(false);
+
+        console.log('error: ', error);
+        if (error) {
+            Alert.alert('Login', error.message);
         }
         
     }
